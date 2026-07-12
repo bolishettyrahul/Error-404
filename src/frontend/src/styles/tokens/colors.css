@@ -1,0 +1,70 @@
+/* ============================================================
+   TrueBatch — Color tokens
+   Apple-HIG-inspired neutral palette. Red is reserved exclusively
+   for flagged/anomalous checkpoints — it must never appear as a
+   decorative or branding color.
+   ============================================================ */
+
+:root {
+  /* Base values */
+  --ink: #1D1D1F;      /* primary text, headlines */
+  --paper: #F5F5F7;    /* page background */
+  --surface: #FFFFFF;  /* cards, panels, modals */
+  --mist: #86868B;     /* secondary text, timestamps, placeholders */
+  --hairline: #D2D2D7; /* 1px dividers, borders */
+  --signal: #FF3B30;   /* ONLY on a flagged/anomalous checkpoint */
+
+  /* Extended neutrals (derived, for depth without new hues) */
+  --ink-70: rgba(29, 29, 31, 0.70);
+  --ink-40: rgba(29, 29, 31, 0.40);
+  --ink-08: rgba(29, 29, 31, 0.08);
+  --surface-veil: rgba(255, 255, 255, 0.72); /* frosted panels over content */
+  --paper-veil: rgba(245, 245, 247, 0.82);
+  --scrim: rgba(29, 29, 31, 0.32); /* modal backdrop */
+
+  /* Semantic status (risk / checkpoint states) — used sparingly,
+     always paired with text, never color-alone */
+  --status-good: #1D8A4E;      /* compliant / verified */
+  --status-good-bg: #E6F5EC;
+  --status-pending: #B8860B;   /* awaiting confirmation */
+  --status-pending-bg: #FBF3DE;
+  --status-flag: var(--signal);/* anomalous — the one true accent */
+  --status-flag-bg: #FDE9E7;
+  --status-info: #0066CC;      /* on-chain / link / informational */
+  --status-info-bg: #E8F1FC;
+
+  /* Semantic aliases */
+  --text-primary: var(--ink);
+  --text-secondary: var(--mist);
+  --text-on-signal: #FFFFFF;
+  --bg-page: var(--paper);
+  --bg-surface: var(--surface);
+  --border-hairline: var(--hairline);
+  --focus-ring: rgba(0, 102, 204, 0.45);
+}
+
+/* Dark mode — TrueBatch dashboard supports a dark theme (per spec: dark/light toggle) */
+:root[data-theme="dark"] {
+  --ink: #F5F5F7;
+  --paper: #000000;
+  --surface: #1C1C1E;
+  --mist: #98989D;
+  --hairline: #38383A;
+  --signal: #FF453A;
+
+  --ink-70: rgba(245, 245, 247, 0.70);
+  --ink-40: rgba(245, 245, 247, 0.40);
+  --ink-08: rgba(245, 245, 247, 0.10);
+  --surface-veil: rgba(28, 28, 30, 0.72);
+  --paper-veil: rgba(0, 0, 0, 0.82);
+  --scrim: rgba(0, 0, 0, 0.55);
+
+  --status-good: #32D74B;
+  --status-good-bg: rgba(50, 215, 75, 0.14);
+  --status-pending: #FFD60A;
+  --status-pending-bg: rgba(255, 214, 10, 0.14);
+  --status-flag: var(--signal);
+  --status-flag-bg: rgba(255, 69, 58, 0.14);
+  --status-info: #409CFF;
+  --status-info-bg: rgba(64, 156, 255, 0.14);
+}
