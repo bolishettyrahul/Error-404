@@ -42,10 +42,10 @@ export async function queryBatchUTxO(batchId: string): Promise<QueryBatchResult 
     try {
       const utxos = await blockfrost.addressesUtxos(VALIDATOR_ADDRESS);
       for (const utxo of utxos) {
-        if (utxo.inline_datum) {
+        if ((utxo as any).inline_datum) {
           // Deserialization of Plutus datum is required here
           // For prototype, we simulate finding the correct datum matching batchId
-          console.log(`Found UTxO with inline datum: ${utxo.inline_datum}`);
+          console.log(`Found UTxO with inline datum: ${(utxo as any).inline_datum}`);
         }
       }
     } catch (error) {

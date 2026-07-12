@@ -15,7 +15,7 @@ export async function getNetworkInfo() {
     return { network: "preprod", supply: { total: "0", circulating: "0" } };
   }
   try {
-    const info = await blockfrost.network();
+    const info = await (blockfrost as any).network();
     console.log("✅ Blockfrost connected", info.network);
     return info;
   } catch (error) {
