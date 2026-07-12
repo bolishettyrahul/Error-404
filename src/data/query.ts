@@ -38,7 +38,7 @@ export async function queryBatchUTxO(batchId: string): Promise<QueryBatchResult 
   if (cached) return cached;
 
   // Otherwise, attempt blockfrost query if API key is not mock
-  if (process.env.BLOCKFROST_API_KEY && process.env.BLOCKFROST_API_KEY !== "preview_mock_key") {
+  if (process.env.BLOCKFROST_API_KEY && process.env.BLOCKFROST_API_KEY !== "preprod_mock_key") {
     try {
       const utxos = await blockfrost.addressesUtxos(VALIDATOR_ADDRESS);
       for (const utxo of utxos) {

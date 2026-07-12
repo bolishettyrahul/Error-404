@@ -11,7 +11,7 @@ async function seedDemoBatches() {
   console.log("🌱 Seeding demo batches for TrueBatch local testing...");
 
   // Batch A: Clean (No anomalies)
-  // Curing time: slot 100,000 to 704,800 is 604,800 slots = exactly 7 days (Cardano slot is 1 second on Preview)
+  // Curing time: slot 100,000 to 704,800 is 604,800 slots = exactly 7 days (Cardano slot is 1 second on Preprod)
   // Transit time: slot 800,000 to 900,000 is 100,000 slots = ~27.7 hours (> 24 hours)
   const batchA_Checkpoints: Checkpoint[] = [
     {
