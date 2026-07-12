@@ -1,0 +1,10 @@
+[project]
+name = "validators"
+version = "1.0.0"
+licence = "Apache-2.0"
+description = "TrueBatch material batch sequence validator"
+
+[[dependencies]]
+name = "aiken-lang/stdlib"
+version = "v1.7.0"
+source = "github"

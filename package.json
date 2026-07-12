@@ -1,0 +1,27 @@
+{
+  "name": "trubatch-core",
+  "version": "1.0.0",
+  "description": "TrueBatch core backend and smart contract layers",
+  "main": "src/backend/index.ts",
+  "scripts": {
+    "backend": "ts-node src/backend/index.ts",
+    "seed-demo": "ts-node src/data/seed-demo-batches.ts",
+    "build:backend": "tsc --project src/backend/tsconfig.json",
+    "build:data": "tsc --project src/data/tsconfig.json"
+  },
+  "dependencies": {
+    "@meshsdk/core": "^1.5.8",
+    "axios": "^1.6.8",
+    "@blockfrost/blockfrost-js": "^0.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}

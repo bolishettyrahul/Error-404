@@ -1,0 +1,27 @@
+# Aiken
+/aiken/target/
+*.swp
+*.swo
+
+# Node
+node_modules/
+.env
+.env.local
+dist/
+build/
+demo-batches.json
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Ollama/local
+ollama_cache/
+
+# Blockfrost
+blockfrost_key.txt
