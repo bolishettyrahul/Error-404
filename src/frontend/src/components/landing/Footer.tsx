@@ -40,7 +40,7 @@ export function Footer() {
             textAlign: "right",
           }}
         >
-          TrueBatch records checkpoints on the Cardano Preview testnet. It does not certify material safety or verify
+          TrueBatch records checkpoints on the Cardano Preprod testnet. It does not certify material safety or verify
           the truthfulness of any submitted data — only that, once recorded, it cannot be altered.
         </p>
       </div>

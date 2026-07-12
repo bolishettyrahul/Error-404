@@ -80,7 +80,7 @@ function App() {
     setWalletAddress(wallet.address);
     setActorPkh(wallet.actorPkh);
     setWalletPickerOpen(false);
-    triggerToast("Wallet connected to Cardano Preview testnet.", "info");
+    triggerToast("Wallet connected to Cardano Preprod testnet.", "info");
   };
 
   const disconnectWallet = () => {

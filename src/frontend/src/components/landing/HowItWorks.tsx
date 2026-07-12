@@ -145,7 +145,7 @@ export function HowItWorks() {
               maxWidth: 640,
             }}
           >
-            TrueBatch runs on the Cardano Preview testnet. Records are read via Blockfrost; checkpoints are minted as
+            TrueBatch runs on the Cardano Preprod testnet. Records are read via Blockfrost; checkpoints are minted as
             CIP-68 tokens with an append-only datum, so history can only ever grow, never change.
           </p>
         </Reveal>

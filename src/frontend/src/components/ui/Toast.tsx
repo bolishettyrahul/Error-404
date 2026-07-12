@@ -15,7 +15,7 @@ export interface ToastProps {
   onDismiss?: () => void;
 }
 
-/** Toast — transient confirmation, e.g. "Submitted to Preview testnet". */
+/** Toast — transient confirmation, e.g. "Submitted to Preprod testnet". */
 export function Toast({ tone = "info", children, onDismiss }: ToastProps) {
   const t = tones[tone] || tones.info;
   return (

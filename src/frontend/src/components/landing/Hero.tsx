@@ -59,7 +59,7 @@ export function Hero({ onSearch, wallet, onConnect }: HeroProps) {
             icon={<Icon name="link-2" size={12} color="#F5F5F7" />}
             style={{ background: "rgba(255,255,255,0.08)", color: "#F5F5F7" }}
           >
-            Built on Cardano · Preview testnet
+            Built on Cardano · Preprod testnet
           </Badge>
         </Reveal>
 
