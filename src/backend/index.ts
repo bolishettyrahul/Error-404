@@ -7,6 +7,7 @@ import { runTier0, calculateRiskLevel } from "./tier0";
 import { runTier1 } from "./tier1";
 import { runTier2 } from "./tier2";
 import { Stage } from "../data/types";
+import { buildCheckpointPayload, verifyCheckpoint } from "./verifyCheckpoint";
 
 dotenv.config();
 
@@ -104,31 +105,41 @@ app.get("/batch/:id", async (req: Request, res: Response) => {
 
 // POST to append a new checkpoint (simulates blockchain write and saves locally)
 app.post("/append-checkpoint", async (req: Request, res: Response) => {
-  const { batch_id, new_checkpoint } = req.body;
+  const { batch_id, new_checkpoint, signature, key, address } = req.body;
 
   if (!batch_id || !new_checkpoint) {
     return res.status(400).json({ error: "Missing batch_id or new_checkpoint object." });
   }
 
   const { stage, actor_pkh, data_hash, slot } = new_checkpoint;
-  if (!stage || !actor_pkh || !data_hash) {
-    return res.status(400).json({ error: "Checkpoint must contain stage, actor_pkh, and data_hash." });
+  if (!stage || !actor_pkh || !data_hash || typeof slot !== "number") {
+    return res.status(400).json({ error: "Checkpoint must contain stage, actor_pkh, data_hash, and numeric slot." });
+  }
+  if (!signature || !key || !address) {
+    return res.status(400).json({ error: "Missing wallet signature, key, or address." });
+  }
+
+  // Verify the CIP-8 signature and that the signer owns actor_pkh.
+  const payload = buildCheckpointPayload({ batch_id, stage, data_hash, slot });
+  const verification = await verifyCheckpoint({ payload, signature, key, address, actor_pkh });
+  if (!verification.ok) {
+    return res.status(401).json({ error: `Authorization failed: ${verification.reason}` });
   }
 
   const db = loadDB();
-  let key: "batchA" | "batchB" | null = null;
+  let key_name: "batchA" | "batchB" | null = null;
 
   if (db.batchA && db.batchA.batch_id === batch_id) {
-    key = "batchA";
+    key_name = "batchA";
   } else if (db.batchB && db.batchB.batch_id === batch_id) {
-    key = "batchB";
+    key_name = "batchB";
   } else {
     // Dynamic matching for demo prefix tolerance
-    if (batch_id.startsWith("B-2024-GOOD")) key = "batchA";
-    if (batch_id.startsWith("B-2024-FRAUD")) key = "batchB";
+    if (batch_id.startsWith("B-2024-GOOD")) key_name = "batchA";
+    if (batch_id.startsWith("B-2024-FRAUD")) key_name = "batchB";
   }
 
-  if (!key || !db[key]) {
+  if (!key_name || !db[key_name]) {
     return res.status(404).json({ error: `Batch "${batch_id}" does not exist to append checkpoints.` });
   }
 
@@ -137,22 +148,18 @@ app.post("/append-checkpoint", async (req: Request, res: Response) => {
     stage: stage as Stage,
     actor_pkh,
     data_hash,
-    slot: slot || Math.floor(Date.now() / 1000),
+    slot,
   };
 
   // Enforce append-only in storage
-  db[key].checkpoints.push(checkpoint);
+  db[key_name].checkpoints.push(checkpoint);
   saveDB(db);
 
-  console.log(`[Backend] Appended new checkpoint [${stage}] to batch [${batch_id}]`);
-
-  // Simulate an unsigned transaction for wallet signing
-  const unsignedTx = "83a40081825820" + Buffer.from(batch_id).toString("hex").substring(0, 32) + "00018182583900";
+  console.log(`[Backend] Verified + appended checkpoint [${stage}] to batch [${batch_id}] by signer ${actor_pkh.substring(0, 12)}…`);
 
   res.json({
     success: true,
-    tx_hash: "tx_" + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-    unsigned_tx: unsignedTx,
+    proof: signature,
     checkpoint,
   });
 });
