@@ -270,7 +270,7 @@ function App() {
         
         {/* LANDING PAGE (NO SEARCH RESULTS YET) */}
         {!batchData && !searchLoading && (
-          <div className="w-full max-w-3xl mx-auto py-12 flex flex-col gap-space-6">
+          <div className="w-full max-w-xl mx-auto py-12 flex flex-col gap-space-6">
             
             {/* Hero Section */}
             <div className="text-center space-y-3">
@@ -278,7 +278,7 @@ function App() {
                 Immutable construction material validation. <br />
                 <span className="text-gray-500 font-normal">Powered by Cardano Preview testnet.</span>
               </h2>
-              <p className="text-scale-sm text-gray-500 max-w-lg mx-auto">
+              <p className="text-scale-sm text-gray-500 max-w-md mx-auto">
                 Each material batch contains an append-only digital checkpoint trail signed by authorized manufacturers, labs, and inspectors. AI-analyzed for security anomalies.
               </p>
             </div>
@@ -311,6 +311,69 @@ function App() {
                   {searchError}
                 </div>
               )}
+            </div>
+
+            {/* Product Journey & Instructions */}
+            <div className="ui-card border-hairline shadow-card ui-stack">
+              <h3 className="font-display font-bold text-scale-sm uppercase tracking-wider text-gray-400 text-center">
+                Cardano Material Journey
+              </h3>
+              <p className="text-[11px] text-gray-500 text-center leading-relaxed max-w-md mx-auto">
+                TrueBatch establishes a cryptographically signed supply chain. Checkpoints must be generated in strict sequence. If any step is jumped, cured too fast, or fails testing spec, AI flags the record.
+              </p>
+
+              {/* Step Sequence Column */}
+              <div className="flex flex-col gap-space-3 pt-2">
+                
+                {/* Step 1 */}
+                <div className="p-4 bg-surface rounded-[14px] border border-hairline flex flex-col gap-space-1 text-left">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-gray-400 font-bold uppercase tracking-wider">Step 01</span>
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-bold status-good">Whitelisted</span>
+                  </div>
+                  <h4 className="font-display font-bold text-scale-sm">Material Manufacture</h4>
+                  <p className="text-[11px] text-gray-500 leading-normal">
+                    The verified producer mints the batch CIP-68 NFT and signs the first on-chain Manufactured checkpoint hash.
+                  </p>
+                </div>
+
+                {/* Step 2 */}
+                <div className="p-4 bg-surface rounded-[14px] border border-hairline flex flex-col gap-space-1 text-left">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-gray-400 font-bold uppercase tracking-wider">Step 02</span>
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-bold status-good">Validation Check</span>
+                  </div>
+                  <h4 className="font-display font-bold text-scale-sm">Laboratory Verification</h4>
+                  <p className="text-[11px] text-gray-500 leading-normal">
+                    Laboratory records concrete/steel sample values. AI rules engine automatically flags premature curing durations.
+                  </p>
+                </div>
+
+                {/* Step 3 */}
+                <div className="p-4 bg-surface rounded-[14px] border border-hairline flex flex-col gap-space-1 text-left">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-gray-400 font-bold uppercase tracking-wider">Step 03</span>
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-bold status-info">Transit Check</span>
+                  </div>
+                  <h4 className="font-display font-bold text-scale-sm">Logistic Dispatch</h4>
+                  <p className="text-[11px] text-gray-500 leading-normal">
+                    Logistic carriers publish dispatch times and loading manifests. Transit hours are checked against geographical distance logic.
+                  </p>
+                </div>
+
+                {/* Step 4 */}
+                <div className="p-4 bg-surface rounded-[14px] border border-hairline flex flex-col gap-space-1 text-left">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-gray-400 font-bold uppercase tracking-wider">Step 04</span>
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-bold status-info">Delivery Audit</span>
+                  </div>
+                  <h4 className="font-display font-bold text-scale-sm">Site Inspector Audit</h4>
+                  <p className="text-[11px] text-gray-500 leading-normal">
+                    The receiving site manager runs ledger audits, verifying signatures and hash details before structural installation.
+                  </p>
+                </div>
+
+              </div>
             </div>
 
           </div>

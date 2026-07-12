@@ -84,12 +84,23 @@
 /* Global Styles & Overrides */
 html, body {
   background-color: var(--color-paper);
+  background-image: radial-gradient(circle at 50% 50%, var(--color-surface) 0%, var(--color-paper) 100%);
+  background-attachment: fixed;
   color: var(--color-ink);
   font-family: var(--font-body);
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, background-image 0.2s ease;
   margin: 0;
   padding: 0;
 }
+
+/* Custom theme mapping helper utility classes */
+.bg-paper { background-color: var(--color-paper); }
+.bg-surface { background-color: var(--color-surface); }
+.bg-mist { background-color: var(--color-mist); }
+.text-ink { color: var(--color-ink); }
+.text-signal-red { color: var(--color-signal-red); }
+.border-hairline { border-color: var(--color-hairline); }
+.border-mist { border-color: var(--color-mist); }
 
 /* Typography Utility Overrides */
 .font-display {
